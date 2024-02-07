@@ -15,3 +15,4 @@
 [2024-02-07 09:19:42,605] INFO [GroupMetadataManager brokerId=0] Group spark-kafka-source-8cfd50b9-8d31-43ba-9125-186bee86e95b-1365922323-driver-0 transitioned to Dead in generation 2 (kafka.coordinator.group.GroupMetadataManager)
 [2024-02-07 09:19:42,605] INFO [GroupMetadataManager brokerId=0] Removed 0 expired offsets in 1 milliseconds. (kafka.coordinator.group.GroupMetadataManager)
 [2024-02-07 09:29:42,604] INFO [GroupMetadataManager brokerId=0] Removed 0 expired offsets in 0 milliseconds. (kafka.coordinator.group.GroupMetadataManager)
+[2024-02-07 09:39:42,604] INFO [GroupMetadataManager brokerId=0] Removed 0 expired offsets in 0 milliseconds. (kafka.coordinator.group.GroupMetadataManager)
