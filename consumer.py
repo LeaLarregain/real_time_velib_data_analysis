@@ -77,7 +77,7 @@ if __name__ == "__main__":
                      .withColumn("timestamp", pysqlf.current_timestamp())
                      .select("timestamp", "postcode", "total_bikes", "total_mechanical_bikes", "total_electric_bikes")
                      )
-
+    
     # Afficher les indicateurs en streaming dans la console
     query = (indicators_df
              .writeStream
@@ -86,4 +86,20 @@ if __name__ == "__main__":
              .start()
              )
 
+    # Envoyer les résultats du traitement vers le topic Kafka
+    query_kafka = (indicators_df
+                   .selectExpr("to_json(struct(*)) as value")
+                   .writeStream
+                   .format("kafka")
+                   .queryName("velib-projet-final-data")
+                   .option("kafka.bootstrap.servers", "localhost:9092")
+                   .option("topic", "velib-projet-final-data")
+                   .outputMode("update")
+                   .option("checkpointLocation", "chk-point-dir-indicators")
+                   .trigger(processingTime="1 second")
+                   .start()
+                   )
+
     query.awaitTermination()
+    query_kafka.awaitTermination()
+
